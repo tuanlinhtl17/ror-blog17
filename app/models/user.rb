@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :posts
+
   attr_accessor :remember_token
 
   before_save { self.email = email.downcase }
