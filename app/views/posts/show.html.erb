@@ -13,7 +13,7 @@
           <!-- Author -->
           <i class="lead">
             by
-            <a href="#"><%= @user.name %></a>
+            <%= link_to @user.name, @user %>
           </i>
 
           <hr>
@@ -36,17 +36,41 @@
 
           <!-- Comments Form -->
           <% if logged_in? %>
-            <div class="card my-4">
+            <%= form_for(@comment) do |form| %>
+                <% if(@post.errors.any?) %>
+                  <div id="error_explanation">
+                    <div class="alert alert-danger">
+                      The form contains <%= pluralize(@post.errors.count, "error") %>
+                    </div>
+                    <ul>
+                      <% @post.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+            <% end %>
+
+              <div class="field">
+                <%= form.label :content %>
+                <%= form.text_area :content, class: "form-control", rows: 10 %>
+              </div>
+
+              <div class="field">
+                <%= form.submit "Create", class: "btn btn-primary" %>
+              </div>
+
+            <!-- <div class="card my-4">
               <h5 class="card-header">Leave a Comment:</h5>
               <div class="card-body">
-                <form>
+                <form class="new_comment" id="new_comment" action="">
                   <div class="form-group">
                     <textarea class="form-control" rows="3"></textarea>
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
               </div>
-            </div>
+            </div> -->
           <% end %>
 
 
