@@ -2,14 +2,24 @@ class CommentsController < ApplicationController
 
   def create
     if logged_in?
-      @comment = Comment.new(comment_params)
-      if @comment.save
-        flash[:success] = "Created new comment !"
-        redirect_to Post.find_by(id: params[:post][:id])
-      else
-        flash[:danger] = "Cannot create new comment !"
-        redirect_to Post.find_by(id: params[:post][:id])
-      end
+        @post = Post.find(params[:comment][:post_id])
+        @comment = @post.comments.create(comment_params)
+        @comment.user_id = current_user.id
+        if @comment.save
+          respond_to do |format|
+            format.json do
+              render json: {
+                content: @comment.content,
+                user_name: current_user.name,
+                avatar: current_user.avatar_url
+              }.to_json
+            end
+          end
+          print current_user.avatar_url
+        else
+          flash.now[:danger] = "error"
+          redirect_to @post
+        end
     else
       flash[:danger] = "You must log in first"
       redirect_to login_path
@@ -19,7 +29,6 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:content).merge(user_id: current_user.id,
-                                                    post_id: params[:id])
+    params.require(:comment).permit(:content, :post_id).merge(user_id: current_user.id)
   end
 end

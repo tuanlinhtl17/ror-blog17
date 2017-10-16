@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find_by(id: params[:id])
     @user = User.find_by(id: @post.user_id)
-    @comment_arr = Comment.all
+    @comment_arr = Comment.where(post_id: @post.id)
     @comment = Comment.new
   end
 
