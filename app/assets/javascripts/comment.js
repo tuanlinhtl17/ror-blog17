@@ -5,8 +5,8 @@ $(document).ready(function(){
     let action = $(this).attr('action');
     let method = $(this).attr('method');
 
-    let content = $("textarea").val();
-    let post_id = $("#comment_post_id").val();
+    let content = $('textarea').val();
+    let post_id = $('#comment_post_id').val();
 
     // $.ajax({
     //   method: method,
@@ -32,9 +32,10 @@ $(document).ready(function(){
       html += '<h5 class="mt-0">' + response.user_name + '</h5>';
       html += response.content;
       html += '</div>' + '</div>';
-      $("#comments").prepend(html);
+      $('#comments').append(html);
       $("textarea").val('');
       $('input[type="submit"]').prop('disabled', false);
+      $('html, body').animate({ scrollTop: $(document).height()}, 'slow');
     });
   });
 });
