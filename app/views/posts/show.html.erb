@@ -15,7 +15,12 @@
             by
             <%= link_to @user.name, @user %>
           </i>
-
+          <% if (@post.user_id == current_user.id) || current_user.admin? %>
+            <hr>
+              <%= link_to "edit", edit_post_path(@post), class: "btn btn-warning" %>
+              <%= link_to "delete", @post, method: :delete,
+                                data: { confirm: "You sure?" }, class: "btn btn-danger" %>
+          <% end %>
           <hr>
 
           <!-- Date/Time -->

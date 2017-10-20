@@ -1,0 +1,8 @@
+<li>
+  <%= image_tag(post.img_url, alt: post.title, class: "show_avatar") %>
+  <h3><%= link_to post.title, post %></h3>
+  <h4>Posted by <i><%= User.find_by(id: post.user_id).name %></i></h4>
+  <%= link_to "delete", post, method: :delete,
+                              data: { confirm: "You sure?" } %> |
+  <%= link_to "edit", edit_post_path(post) %>
+</li>
