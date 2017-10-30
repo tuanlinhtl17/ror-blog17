@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :posts
-  has_many :comments
+  has_many :comments, dependent: :destroy
   attr_accessor :remember_token
 
   before_save { self.email = email.downcase }

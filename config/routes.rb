@@ -11,5 +11,6 @@ Rails.application.routes.draw do
 
   resources :posts
   resources :users
-  resources :comments
+  resources :comments,  only: [:create, :destroy]
+  resources :tags,      only: [:create, :destroy]
 end
