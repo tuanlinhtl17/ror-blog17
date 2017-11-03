@@ -2,11 +2,11 @@
 
   <!-- Banner -->
   <div id="landing-header">
-      <h1>YelpCamp</h1>
-  <h3 style="color:#fff">Start planning your next trip today</h3>
+      <h1><%= t ".title" %></h1>
+  <h3 style="color:#fff"><%= t ".slogan" %></h3>
   <br>
   <% if !logged_in? %>
-    <a href=<%= signup_path %> class="btn btn-default btn-lg"><i class="fa fa-tree"></i> Get Started!</a>
+    <a href=<%= signup_path %> class="btn btn-default btn-lg"><i class="fa fa-tree"><%= t ".signup" %></i></a>
   <% end %>
   </div>
 
@@ -21,7 +21,7 @@
 
   <!-- Page Content -->
   <div class="container">
-    <h2 class="text-center">All of our posts: </h2>
+    <h2 class="text-center"><%= t ".all_post_header" %></h2>
     <div class="row">
 
       <!-- Blog Entries Column -->

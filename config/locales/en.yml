@@ -30,4 +30,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  static_pages:
+    home:
+      title: "YelpCamp"
+      slogan: "Start planning your next trip today"
+      signup: "Get Started!"
+      all_post_header: "All of our posts:"
+      post_link: "Read More"
