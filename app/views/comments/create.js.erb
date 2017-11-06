@@ -1,0 +1,18 @@
+<% user = User.find_by(id: @comment.user_id) %>
+var html = '<div id="<%= @comment.id %>"'
+html += '<div class="media mb-4">'
+html += '<img class="d-flex mr-3 rounded-circle" src=<%= user.avatar_url %> alt="" style="height: 50px; width: 50px">';
+html += '<div class="media-body">'
+html += '<h5 class="mt-0"><%= user.name %></h5>';
+html += <%=  @comment.content %>;
+html += '</div>' + '</div>';
+html += '<li class="dropdown pull-right">';
+html += '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>';
+html += '<ul class="dropdown-menu dropdown-menu-right">';
+html += '<li><%= link_to "Delete", @comment, method: :delete, data: { confirm: "You sure?", remote: true } %></li>';
+html += '<li><%= link_to "Edit", edit_comment_path(@comment), remote: true %></li>';
+html += '</ul></li>';
+html += '<hr>';
+html += '</div>';
+$('#comments').prepend(html);
+$('#comment_content').val('');

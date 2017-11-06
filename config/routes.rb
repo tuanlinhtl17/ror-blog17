@@ -7,10 +7,9 @@ Rails.application.routes.draw do
   delete "logout"   => "sessions#destroy"
   get "newpost"     => "posts#new"
   post "newpost"    => "posts#create"
-  post "comments"   => "comments#create"
 
   resources :posts
   resources :users
-  resources :comments,  only: [:create, :destroy]
+  resources :comments,  only: [:create, :edit, :update, :destroy]
   resources :tags,      only: [:create, :destroy]
 end

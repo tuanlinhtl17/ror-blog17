@@ -59,7 +59,7 @@
             <div class="card my-4">
               <h5 class="card-header">Leave a Comment:</h5>
               <div class="card-body">
-                <%= form_for(@comment) do |f| %>
+                <%= form_for(@comment, remote: true) do |f| %>
 
                   <div class="form-group">
                     <%= f.text_area :content, class: "form-control", rows: 3 %>
@@ -81,12 +81,28 @@
           <div id="comments">
             <% @comment_arr.each do |comment| %>
               <% user = User.find_by(id: comment.user_id) %>
-              <div class="media mb-4">
-                <img class="d-flex mr-3 rounded-circle" src=<%= user.avatar_url %> alt="", style="height: 50px; width: 50px">
-                <div class="media-body">
-                  <h5 class="mt-0"><%= user.name %></h5>
-                  <%= comment.content %>
+              <div id="<%= comment.id %>">
+                <div class="media mb-4">
+                  <img class="d-flex mr-3 rounded-circle" src=<%= user.avatar_url %> alt="" style="height: 50px; width: 50px">
+                  <div class="media-body">
+                    <h5 class="mt-0"><%= user.name %></h5>
+                    <%= comment.content %>
+                  </div>
                 </div>
+
+                <% if logged_in? %>
+                  <% if (@post.user_id == current_user.id) || current_user.admin? %>
+                    <li class="dropdown pull-right">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
+                      <ul class="dropdown-menu dropdown-menu-right">
+                        <li><%= link_to "Delete", comment, method: :delete,
+                                    data: { confirm: "You sure?", remote: true } %></li>
+                        <li><%= link_to "Edit", edit_comment_path(comment), remote: true %></li>
+                      </ul>
+                    </li>
+                  <% end %>
+                <% end %>
+                <hr>
               </div>
             <% end %>
           </div>

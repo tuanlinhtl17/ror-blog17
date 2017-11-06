@@ -9,14 +9,7 @@ class CommentsController < ApplicationController
         if @comment.save
           respond_to do |format|
             format.html { redirect_to @post }
-
-            format.json do
-              render json: {
-                content: @comment.content,
-                user_name: current_user.name,
-                avatar: current_user.avatar_url
-              }.to_json
-            end
+            format.js
           end
 
         else
@@ -29,6 +22,34 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @comment = Comment.find_by(id: params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def update
+    @comment = Comment.find_by(id: params[:id])
+    if @comment.update_attributes(comment_params)
+      respond_to do |format|
+        format.js
+      end
+    else
+      flash[:danger] = "Cannot edit comment"
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+
+  def destroy
+    @comment_id = params[:id]
+    Comment.find(params[:id]).destroy
+    respond_to do |format|
+      format.js
+    end
+  end
 
   private
   def comment_params
