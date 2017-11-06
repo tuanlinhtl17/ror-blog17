@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :correct_user, only: [:edit, :update]
 
   def create
     if logged_in?
@@ -52,7 +53,13 @@ class CommentsController < ApplicationController
   end
 
   private
-  def comment_params
-    params.require(:comment).permit(:content, :post_id).merge(user_id: current_user.id)
-  end
+    def comment_params
+      params.require(:comment).permit(:content, :post_id).merge(user_id: current_user.id)
+    end
+
+    def correct_user
+      @user = User.find_by(id: current_user.id)
+      @comment = Post.find_by(id: params[:id])
+      redirect_to root_url unless (@comment.user_id == current_user.id) || current_user.admin?
+    end
 end

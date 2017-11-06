@@ -1,12 +1,5 @@
 class TagsController < ApplicationController
-  before_action :logged_in?
-
-  def create
+  def show
+    @tag = Tag.find_by(id: params[:id])
   end
-
-  private
-
-    def tag_params
-      params.require(:tag).permit(:name)
-    end
 end

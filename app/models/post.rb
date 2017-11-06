@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   validates :img_url, presence: true
 
   def all_tags=(names)
-    self.tag = names.split(",").map do |name|
+    self.tag = names.split(", ").map do |name|
         Tag.where(name: name).first_or_create!
     end
   end
