@@ -12,9 +12,11 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :bookmarked
+      get :following, :followers
     end
   end
-  resources :comments,  only: [:create, :edit, :update, :destroy]
-  resources :tags,      only: [:show, :create, :destroy]
-  resources :bookmarks, only: [:create, :destroy]
+  resources :comments,      only: [:create, :edit, :update, :destroy]
+  resources :tags,          only: [:show, :create, :destroy]
+  resources :bookmarks,     only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
 end

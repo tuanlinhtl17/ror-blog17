@@ -1,8 +1,22 @@
 <% provide(:title, 'All users') %>
-<h1>All users</h1>
+<div class="container">
+  <h2 class="text-center">All posts:</h2>
+  <div class="row">
 
-<ul class="users">
-  <% @posts.each do |post| %>
-    <%= render post %>
-  <% end %>
-</ul>
+    <!-- Blog Entries Column -->
+    <div class="col-md-8 col-md-offset-2">
+
+      <br><br>
+      <!-- Blog Post -->
+      <% @posts.each do |post| %>
+        <%= render post %>
+        <%= link_to "delete", post, method: :delete,
+                              data: { confirm: "You sure?" } %> |
+        <%= link_to "edit", edit_post_path(post) %>
+        <hr>
+      <% end %>
+
+    </div>
+
+</div>
+
