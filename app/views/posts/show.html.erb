@@ -15,10 +15,13 @@
             by
             <%= link_to @user.name, @user %>
           </i>
+
+          <%= render "bookmark_form" %>
+
           <br>
           <div class="all_tag">
             <i>Tags: </i>
-            <% @post.tag.each do |p_tag| %>
+            <% @post.tags.each do |p_tag| %>
               <i><%= link_to p_tag.name, p_tag %> </i>
             <% end %>
           </div>

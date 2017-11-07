@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   post "newpost"    => "posts#create"
 
   resources :posts
-  resources :users
+  resources :users do
+    member do
+      get :bookmarked
+    end
+  end
   resources :comments,  only: [:create, :edit, :update, :destroy]
   resources :tags,      only: [:show, :create, :destroy]
+  resources :bookmarks, only: [:create, :destroy]
 end
