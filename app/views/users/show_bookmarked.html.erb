@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="text-center">All post with tag <i><%= @tag.name %></i></h2>
+  <h2 class="text-center">All bookmarked post:</h2>
   <div class="row">
 
     <!-- Blog Entries Column -->
@@ -7,7 +7,7 @@
 
       <br><br>
       <!-- Blog Post -->
-      <% @tag.post.each do |post| %>
+      <% @bookmark_posts.each do |post| %>
         <div class="card mb-4">
           <img class="card-img-top post-img" src=<%= post.img_url %> alt="Card image cap">
           <div class="card-body">

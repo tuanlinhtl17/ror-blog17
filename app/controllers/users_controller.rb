@@ -47,6 +47,11 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def bookmarked
+    @bookmark_posts = current_user.bookmark_posts
+    render "show_bookmarked"
+  end
+
   private
 
   def user_params

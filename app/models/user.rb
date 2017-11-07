@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :posts
   has_many :comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_posts, through: :bookmarks, class_name: "Post", source: :post
   attr_accessor :remember_token
 
   before_save { self.email = email.downcase }
@@ -36,5 +38,17 @@ class User < ApplicationRecord
 
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  def bookmark post
+    bookmark_posts << post
+  end
+
+  def unbookmark post
+    bookmark_posts.delete post
+  end
+
+  def bookmarking? post
+    bookmark_posts.include? post
   end
 end
