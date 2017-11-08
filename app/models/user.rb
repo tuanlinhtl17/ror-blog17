@@ -11,7 +11,8 @@ class User < ApplicationRecord
                                    dependent:   :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-
+  has_many :likes, dependent: :destroy
+  has_many :like_posts, through: :likes, class_name: "Post", source: :post
   attr_accessor :remember_token
 
   before_save { self.email = email.downcase }
@@ -78,5 +79,17 @@ class User < ApplicationRecord
                      WHERE  follower_id = :user_id"
     Post.where("user_id IN (#{following_ids})
                      OR user_id = :user_id", user_id: id)
+  end
+
+  def like post
+    like_posts << post
+  end
+
+  def unlike post
+    like_posts.delete post
+  end
+
+  def liking? post
+    like_posts.include? post
   end
 end

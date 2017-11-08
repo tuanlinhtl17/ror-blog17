@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :tags,          only: [:show, :create, :destroy]
   resources :bookmarks,     only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :likes,         only: [:create, :destroy]
 end
