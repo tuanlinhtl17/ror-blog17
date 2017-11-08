@@ -12,8 +12,8 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { maximum: 30 }
   validates :img_url, presence: true
 
-  scope :hot, -> {
-    joins(:likes).group("likes.post_id").order("count(*) DESC").limit(10)
+  scope :search, -> (query){
+    where("content like ? or title like ?", "%#{query}%", "%#{query}%")
   }
 
   def all_tags=(names)
@@ -25,4 +25,5 @@ class Post < ApplicationRecord
   def all_tags
     self.tags.map(&:name).join(", ")
   end
+
 end

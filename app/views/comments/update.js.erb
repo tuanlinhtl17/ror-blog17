@@ -4,7 +4,7 @@ html += '<div class="media mb-4">'
 html += '<img class="d-flex mr-3 rounded-circle" src=<%= user.avatar_url %> alt="" style="height: 50px; width: 50px">';
 html += '<div class="media-body">'
 html += '<h5 class="mt-0"><%= user.name %></h5>';
-html += <%=  @comment.content %>;
+html += '<%=  @comment.content %>';
 html += '</div>' + '</div>';
 html += '<li class="dropdown pull-right">';
 html += '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>';

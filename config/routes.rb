@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "newpost"     => "posts#new"
   post "newpost"    => "posts#create"
   get "hotpost"     => "static_pages#hot"
+  get "search"     => "static_pages#search"
   resources :posts
   resources :users do
     member do
