@@ -12,6 +12,10 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { maximum: 30 }
   validates :img_url, presence: true
 
+  scope :hot, -> {
+    joins(:likes).group("likes.post_id").order("count(*) DESC").limit(10)
+  }
+
   def all_tags=(names)
     self.tags = names.split(", ").map do |name|
       Tag.where(name: name).first_or_create!

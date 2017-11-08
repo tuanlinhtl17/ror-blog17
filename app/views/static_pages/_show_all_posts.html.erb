@@ -1,0 +1,17 @@
+<div class="container">
+  <h2 class="text-center"><%= t ".all_post_header" %></h2>
+  <div class="row">
+
+    <!-- Blog Entries Column -->
+    <div class="col-md-8 col-md-offset-2">
+
+      <br><br>
+      <!-- Blog Post -->
+      <% @posts.each do |post| %>
+        <%= render post %>
+        <hr>
+      <% end %>
+
+    </div>
+
+</div>

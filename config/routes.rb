@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   delete "logout"   => "sessions#destroy"
   get "newpost"     => "posts#new"
   post "newpost"    => "posts#create"
-
+  get "hotpost"     => "static_pages#hot"
   resources :posts
   resources :users do
     member do

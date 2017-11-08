@@ -7,6 +7,10 @@ class StaticPagesController < ApplicationController
       @posts = Post.all
       @users = User.all
     end
+  end
 
+  def hot
+    @posts = Post.hot
+    @users = User.all
   end
 end

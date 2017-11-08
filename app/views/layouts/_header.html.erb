@@ -4,7 +4,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
-
+        <li><%= link_to "Hot post", hotpost_path %></li>
           <% if logged_in? %>
             <li><%= link_to "New post", newpost_path %></li>
 

@@ -16,10 +16,7 @@
             <%= link_to @user.name, @user %>
           </i>
 
-          <%= render "bookmark_form" %>
-          <br>
-          <%= render "like_form" %>
-          <br>
+
           <div class="all_tag">
             <i>Tags: </i>
             <% @post.tags.each do |p_tag| %>
@@ -27,6 +24,10 @@
             <% end %>
           </div>
           <% if logged_in? %>
+            <%= render "bookmark_form" %>
+            <br>
+            <%= render "like_form" %>
+            <br>
             <% if (@post.user_id == current_user.id) || current_user.admin? %>
               <hr>
                 <%= link_to "edit", edit_post_path(@post), class: "btn btn-warning" %>
