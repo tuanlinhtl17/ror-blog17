@@ -13,15 +13,6 @@ class PostsController < ApplicationController
     @comment = Comment.new
   end
 
-  def new
-    if logged_in?
-      @post = Post.new
-    else
-      flash[:danger] = "You must log in first"
-      redirect_to login_path
-    end
-  end
-
   def create
     if logged_in?
       @post = Post.new(post_params)

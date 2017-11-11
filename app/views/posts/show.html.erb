@@ -30,7 +30,7 @@
             <br>
             <% if (@post.user_id == current_user.id) || current_user.admin? %>
               <hr>
-                <%= link_to "edit", edit_post_path(@post), class: "btn btn-warning" %>
+                <a href="#editPost" data-toggle="modal" class="btn btn-warning">edit</a>
                 <%= link_to "delete", @post, method: :delete,
                                   data: { confirm: "You sure?" }, class: "btn btn-danger" %>
             <% end %>
@@ -127,3 +127,4 @@
 
     </div>
     <!-- /.container -->
+<%= render 'posts/edit' %>

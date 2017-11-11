@@ -1,11 +1,11 @@
-<%= form_for(@post) do |form| %>
-  <% if(@post.errors.any?) %>
+<%= form_for(post, url: form_url) do |form| %>
+  <% if(post.errors.any?) %>
     <div id="error_explanation">
       <div class="alert alert-danger">
-        The form contains <%= pluralize(@post.errors.count, "error") %>
+        The form contains <%= pluralize(post.errors.count, "error") %>
       </div>
       <ul>
-        <% @post.errors.full_messages.each do |msg| %>
+        <% post.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -35,7 +35,7 @@
   <br>
 
   <div class="field">
-    <%= form.submit yield(:button_text), class: "btn btn-primary" %>
+    <%= form.submit button_text, class: "btn btn-primary" %>
   </div>
 
 <% end %>

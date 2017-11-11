@@ -185,3 +185,23 @@ textarea {
 .users.follow {
   padding: 0;
 }
+
+/* forms */
+
+.checkbox {
+  margin-top: 2px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
+.modal-backdrop {
+  z-index: -1;
+}

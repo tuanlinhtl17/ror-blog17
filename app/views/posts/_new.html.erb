@@ -1,0 +1,16 @@
+<div id="newPost" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">New Post</h4>
+      </div>
+      <div class="modal-body">
+        <%= render "posts/form", post: Post.new, form_url: newpost_path, button_text: "Create" %>
+      </div>
+    </div>
+
+  </div>
+</div>

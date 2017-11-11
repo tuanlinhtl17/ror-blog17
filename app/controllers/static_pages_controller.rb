@@ -15,6 +15,7 @@ class StaticPagesController < ApplicationController
   end
 
   def search
+    @post = Post.new
     content = params[:search]
     if logged_in?
       @posts = []

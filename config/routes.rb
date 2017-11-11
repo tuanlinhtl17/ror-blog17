@@ -2,13 +2,12 @@ Rails.application.routes.draw do
   root "static_pages#home"
 
   get "signup"      => "users#new"
-  get "login"       => "sessions#new"
-  post "login"      => "sessions#create"
+  post "/"          => "sessions#create"
   delete "logout"   => "sessions#destroy"
   get "newpost"     => "posts#new"
   post "newpost"    => "posts#create"
   get "hotpost"     => "static_pages#hot"
-  get "search"     => "static_pages#search"
+  get "search"      => "static_pages#search"
   resources :posts
   resources :users do
     member do
