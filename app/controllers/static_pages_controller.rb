@@ -16,7 +16,15 @@ class StaticPagesController < ApplicationController
 
   def search
     content = params[:search]
-    @posts = Post.search content
+    if logged_in?
+      @posts = []
+      posts = Post.search content
+      posts.each do |post|
+        @posts << post if current_user.feed.include? post
+      end
+    else
+      @posts = Post.search content
+    end
     @users = User.all
   end
 end
