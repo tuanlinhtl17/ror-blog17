@@ -1,0 +1,11 @@
+<div class="chat-sidebar">
+  <% current_user.following.each do |user| %>
+    <div class="sidebar-name">
+        <!-- Pass username and display name to register popup -->
+        <a href="javascript:register_popup('<%= user.id %>', '<%= user.name %>');">
+            <img width="30" height="30" src="<%= user.avatar_url %>" />
+            <span><%= user.name %></span>
+        </a>
+    </div>
+  <% end %>
+</div>

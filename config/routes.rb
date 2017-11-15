@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post "newpost"    => "posts#create"
   get "hotpost"     => "static_pages#hot"
   get "search"      => "static_pages#search"
+  get "chatbox"     => "messages#new"
+
   resources :posts
   resources :users do
     member do
@@ -20,4 +22,7 @@ Rails.application.routes.draw do
   resources :bookmarks,     only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :likes,         only: [:create, :destroy]
+  resources :messages,       only: [:create, :destroy]
+
+  mount ActionCable.server, at: '/cable'
 end

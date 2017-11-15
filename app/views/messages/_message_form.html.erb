@@ -1,0 +1,11 @@
+<div class="message-list"></div>
+<div class="message-form">
+  <%= form_for(@message, remote: true) do |f| %>
+    <%= f.hidden_field :user_receive, value: @user_receive %>
+    <%= f.text_area :content, class: "form-control" %>
+    <%= f.submit "Send" %>
+  <% end %>
+</div>
+
+
+

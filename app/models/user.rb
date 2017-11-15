@@ -13,6 +13,13 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :likes, dependent: :destroy
   has_many :like_posts, through: :likes, class_name: "Post", source: :post
+  has_many :active_messages,  class_name:   "Message",
+                              foreign_key:  "user_send",
+                              dependent:    :destroy
+  has_many :passive_messages, class_name:   "Message",
+                              foreign_key:  "user_receive",
+                              dependent:    :destroy
+
   attr_accessor :remember_token
 
   before_save { self.email = email.downcase }
